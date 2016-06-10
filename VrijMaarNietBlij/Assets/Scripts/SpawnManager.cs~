@@ -1,0 +1,30 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class SpawnManager : MonoBehaviour {
+
+	public GameObject areaPiece;
+	float pieceLenght = 40;
+
+	private Vector3 lastPosition;
+
+	void Start () {
+		lastPosition = Vector3.zero;
+
+		SpawnMultiple (5);
+	}
+
+	void Spawn () {
+		Vector3 position = lastPosition + Vector3.right * pieceLenght;
+		Instantiate (areaPiece, position, Quaternion.identity);
+
+		lastPosition = position;
+	}
+
+	public void SpawnMultiple (int toSpawnPieces) {
+		for (int i = 0; i < toSpawnPieces; i++) {
+			Spawn ();
+		}
+	}
+
+}
